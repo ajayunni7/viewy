@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 
 import 'package:viewy_test/core/token_storage.dart';
 
-const String _defaultBaseUrl =
-    String.fromEnvironment('API_BASE_URL', defaultValue: 'https://example.com');
+const String _defaultBaseUrl = String.fromEnvironment(
+  'API_BASE_URL',
+  defaultValue: 'https://projects.viewydigital.com/demoapi/v1',
+);
 
 class ApiService {
   ApiService._internal()
@@ -14,7 +16,10 @@ class ApiService {
             connectTimeout: const Duration(seconds: 30),
             receiveTimeout: const Duration(seconds: 30),
             responseType: ResponseType.json,
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
           ),
         ) {
     _dio.interceptors.add(

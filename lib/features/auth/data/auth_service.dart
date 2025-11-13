@@ -12,10 +12,10 @@ class AuthService {
     try {
       final response = await _apiService.client.post(
         '/auth/login',
-        data: {
+        data: FormData.fromMap({
           'email': email,
           'password': password,
-        },
+        }),
       );
 
       final token = _extractToken(response);
@@ -26,11 +26,36 @@ class AuthService {
       await _apiService.setAuthToken(token);
       return token;
     } on DioException catch (dioError) {
-      final errorMessage = dioError.response?.data is Map<String, dynamic>
-          ? (dioError.response!.data['message'] as String?)
-          : dioError.message;
+      final errorMessage = _extractErrorMessage(dioError);
       throw AuthException(errorMessage ?? 'Failed to login');
     }
+  }
+
+  String? _extractErrorMessage(DioException dioError) {
+    final responseData = dioError.response?.data;
+    if (responseData is Map<String, dynamic>) {
+      if (responseData['message'] is String) {
+        return responseData['message'] as String;
+      }
+      if (responseData['error'] is String) {
+        return responseData['error'] as String;
+      }
+      if (responseData['info'] is Map<String, dynamic>) {
+        final info = responseData['info'] as Map<String, dynamic>;
+        if (info['message'] is String) {
+          return info['message'] as String;
+        }
+      }
+    } else if (responseData is String) {
+      return responseData;
+    }
+
+    if (dioError.type == DioExceptionType.badResponse &&
+        dioError.response?.statusCode == 403) {
+      return 'Invalid email or password';
+    }
+
+    return dioError.message;
   }
 
   String? _extractToken(Response<dynamic> response) {
