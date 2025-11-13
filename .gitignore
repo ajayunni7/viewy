@@ -1,45 +1,105 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
+# ======================================
+# FLUTTER & DART
+# ======================================
+.dart_tool/
+.packages
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos_tool/
+.melos_tool/
+*.lock
+!pubspec.lock
 
-# IntelliJ related
-*.iml
-*.ipr
-*.iws
+# ======================================
+# IDE & EDITOR CONFIGS
+# ======================================
+# VS Code
+.vscode/
+
+# Android Studio / IntelliJ
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# Xcode
+**/DerivedData/
+*.xcworkspace/
+*.xcuserstate
+*.xcuserdata/
+*.xcodeproj/
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
-/coverage/
+# ======================================
+# PLATFORM SPECIFIC
+# ======================================
+# iOS
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/.symlinks/
+ios/Pods/
+ios/Runner.xcworkspace/
 
-# Symbolication related
-app.*.symbols
+# macOS
+macos/Flutter/ephemeral/
 
-# Obfuscation related
-app.*.map.json
+# Android
+android/.gradle/
+android/app/build/
+android/local.properties
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# Web
+web/.dart_tool/
+
+# Windows
+windows/flutter/ephemeral/
+
+# Linux
+linux/flutter/ephemeral/
+
+# ======================================
+# ENVIRONMENT FILES
+# ======================================
+.env
+.env.*
+*.env
+
+# ======================================
+# LOGS, CACHE, TEMP
+# ======================================
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*.DS_Store
+*.bak
+*.orig
+
+# ======================================
+# AI / WINDSURF / CURSOR / COPILOT / CLAUDE
+# (important for machine test submission)
+# ======================================
+.windsurf/
+.cursor/
+.copilot/
+.claude/
+.ai/
+*.ai.*
+*.prompt
+*.template
+tasktemplate.md
+promptcontext.md
+internal_notes.md
+notes_local.md
+context/
+context.json
+context.yaml
+
+# ======================================
+# MISC
+# ======================================
+coverage/
+test_output/
+.sass-cache/
+.cache/
+*.iml
+*.class
